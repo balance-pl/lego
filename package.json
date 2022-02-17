@@ -5,16 +5,17 @@
   "main": "index.js",
   "scripts": {
     "build": "react-scripts build",
+    "build-storybook": "build-storybook -s public",
+    "build-storybook-docs": "build-storybook  --docs",
     "eject": "react-scripts eject",
     "eslint": "eslint --ignore-path .gitignore .",
     "lint": "npm run prettier -- --write && npm run eslint -- --fix && npm run stylelint -- --fix",
+    "prepare": "husky install",
     "prettier": "prettier --ignore-path .gitignore \"**/*.+(html|js|json|jsx|sass|yml)\"",
     "start": "react-scripts start",
-    "stylelint": "stylelint --ignore-path .gitignore \"**/*.+(css|scss)\"",
-    "test": "react-scripts test",
-    "prepare": "husky install",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "stylelint": "stylelint --ignore-path .gitignore \"**/*.+(css|scss)\"",
+    "test": "react-scripts test"
   },
   "repository": {
     "type": "git",
