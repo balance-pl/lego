@@ -1,0 +1,12 @@
+/* Fonts */
+@import "./fonts/Muller/font.scss";
+
+/* Design tokens */
+@import "./tokens.scss";
+
+/* Components */
+@import "./components/index.scss";
+
+body {
+  font-family: Muller, sans-serif;
+}
