@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react'
-import { ThemeProvider, Theme } from '../context/theme'
-import theme from '../themes/default/theme.module.scss'
+import { ThemeProvider, Theme } from 'context/theme'
+import theme from 'themes/default/theme.module.scss'
 
 const withTheme = (component: JSX.Element) => (
   <ThemeProvider value={theme as Theme}>{component}</ThemeProvider>

@@ -5,7 +5,7 @@ import cn from 'classnames'
 import { APPEARANCE } from './constants'
 
 // Context
-import { useTheme } from '../../context/theme'
+import { useTheme } from 'context/theme'
 
 function TestButton(props: Props) {
   const theme = useTheme()

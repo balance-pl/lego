@@ -1,6 +1,6 @@
 import { ThemeProvider } from '../src/context/theme'
 
-import theme from '../src/themes/alfa/theme.module.scss'
+import theme from '../src/themes/default/theme.module.scss'
 
 export const decorators = [
   (Story) => (

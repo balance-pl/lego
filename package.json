@@ -3,6 +3,7 @@
   "description": "Design System for developing cool interfaces in Balance-Platform",
   "version": "0.0.0",
   "main": "index.js",
+  "homepage": "https://balance-pl.github.io/lego",
   "scripts": {
     "build": "react-scripts build",
     "build-storybook": "build-storybook -s public",

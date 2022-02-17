@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react'
 
 // HoC
-import { render } from '../../hoc/with-theme'
+import { render } from 'hoc/with-theme'
 
 import TestButton from './index'
 
