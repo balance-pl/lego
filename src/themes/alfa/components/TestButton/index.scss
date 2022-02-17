@@ -1,6 +1,6 @@
 @use "sass:color";
 
-.Button {
+.TestButton {
   background-color: transparent;
   border: 1px solid;
   border-radius: 4px;
@@ -12,7 +12,7 @@
   text-align: center;
 }
 
-.Button_appearance_outline {
+.TestButton_appearance_outline {
   background-color: $color-white;
   border-color: $color-grey;
   color: $color-black;
@@ -22,7 +22,7 @@
   }
 }
 
-.Button_appearance_primary {
+.TestButton_appearance_primary {
   background-color: $color-primary;
   border-color: $color-primary;
   color: $color-white;

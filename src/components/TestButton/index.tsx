@@ -13,8 +13,8 @@ function TestButton(props: Props) {
   const { appearance, children, className: cls, ...otherProps } = props
 
   const className = cn(
-    theme.Button,
-    theme[`Button_appearance_${appearance}`],
+    theme.TestButton,
+    theme[`TestButton_appearance_${appearance}`],
     cls
   )
 
