@@ -1,4 +1,8 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
+
+// HoC
+import { render } from '../../hoc/with-theme'
+
 import TestButton from './index'
 
 test('has a href attribute when rendering with linkWrapper', () => {
