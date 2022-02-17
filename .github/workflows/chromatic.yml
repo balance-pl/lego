@@ -11,8 +11,8 @@ jobs:
     # The list of steps that the action will go through
     steps:
       - uses: actions/checkout@v1
-      - run: yarn
-      - run: yarn test
+      - run: npm ci
+      - run: npm test
         #👇 Adds Chromatic as a step in the workflow
       - uses: chromaui/action@v1
         # Options required for Chromatic's GitHub Action
