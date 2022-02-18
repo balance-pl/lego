@@ -8,6 +8,7 @@
     "build": "tsc && webpack",
     "build-storybook": "build-storybook -s public",
     "build-storybook-docs": "build-storybook  --docs",
+    "check-types": "tsc --noEmit",
     "copy-files": "cp package.json dist/package.json && cp LICENSE dist/LICENSE && cp readme.md dist/readme.md",
     "copy-themes": "cp -r src/themes dist/themes",
     "eject": "react-scripts eject",
