@@ -1,3 +1,7 @@
-import TestButton from './components/TestButton'
+// Components
+import TestButton from 'components/TestButton'
 
-export { TestButton }
+// Context
+import { ThemeProvider, Theme } from 'context/theme'
+
+export { TestButton, ThemeProvider, Theme }
