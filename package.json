@@ -5,14 +5,18 @@
   "main": "index.js",
   "homepage": "https://balance-pl.github.io/lego",
   "scripts": {
-    "build": "react-scripts build",
+    "build": "tsc && webpack",
     "build-storybook": "build-storybook -s public",
     "build-storybook-docs": "build-storybook  --docs",
+    "copy-files": "cp package.json dist/package.json && cp LICENSE dist/LICENSE && cp readme.md dist/readme.md",
+    "copy-themes": "cp -r src/themes dist/themes",
     "eject": "react-scripts eject",
     "eslint": "eslint --ignore-path .gitignore .",
     "lint": "npm run prettier -- --write && npm run eslint -- --fix && npm run stylelint -- --fix",
     "prepare": "husky install",
     "prettier": "prettier --ignore-path .gitignore \"**/*.+(html|js|json|jsx|sass|yml)\"",
+    "release": "npm run build && npm run copy-files && npm run copy-themes && npm run remove-prepare-script && npm publish dist",
+    "remove-prepare-script": "node scripts/remove-prepare-script.js",
     "start": "react-scripts start",
     "storybook": "start-storybook -p 6006 -s public",
     "stylelint": "stylelint --ignore-path .gitignore \"**/*.+(css|scss)\"",
@@ -25,6 +29,7 @@
   "keywords": [
     "design",
     "system",
+    "ui-kit",
     "react"
   ],
   "author": "Mikhail Lipilin <lipilin.m@gmail.com>",
@@ -75,8 +80,9 @@
     "eslint-plugin-storybook": "^0.5.6",
     "husky": "^7.0.4",
     "lint-staged": "^12.3.4",
+    "postcss": "^8.4.6",
+    "postcss-scss": "^4.0.3",
     "prettier": "^2.5.1",
-    "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
     "sass": "^1.49.7",
@@ -86,10 +92,11 @@
     "stylelint-scss": "^4.1.0",
     "typescript": "^4.5.5",
     "web-vitals": "^2.1.4",
-    "webpack": "^5.69.0"
+    "webpack": "^5.69.0",
+    "webpack-cli": "^4.9.2"
   },
-  "dependencies": {
-    "postcss": "^8.4.6",
-    "postcss-scss": "^4.0.3"
+  "peerDependencies": {
+    "prop-types": "^15.8.1",
+    "react": "^17.0.2"
   }
 }

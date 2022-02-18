@@ -1,3 +1,4 @@
+import React from 'react'
 import PropTypes, { InferProps } from 'prop-types'
 import cn from 'classnames'
 
