@@ -8,7 +8,6 @@ const ThemeProvider = ThemeContext.Provider
 
 function useTheme() {
   const context = useContext(ThemeContext)
-  console.log('context', context)
   return context
 }
 
