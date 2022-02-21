@@ -23,7 +23,7 @@ describe('Radio', () => {
     expect(label?.classList?.contains('radio__style')).toBeTruthy()
   })
   it('Должен отобразиться Radio в состоянии checked', () => {
-    render(<Checked />)
+    render(<Checked name="checked" />)
     const input = screen.getByRole('radio')
     expect(input).toBeInTheDocument()
     expect(input.hasAttribute('checked')).toBeTruthy()
@@ -39,7 +39,7 @@ describe('Radio', () => {
   })
 
   it('Должен отобразиться Radio в состоянии disabled', () => {
-    render(<Disabled />)
+    render(<Disabled name="locked" />)
     const input = screen.getByRole('radio')
     expect(input).toBeInTheDocument()
     expect(input.hasAttribute('disabled')).toBeTruthy()
