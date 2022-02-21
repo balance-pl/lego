@@ -68,7 +68,7 @@ Radio.defaultProps = {
   checked: false,
   className: '',
   disabled: false,
-  value: null,
+  value: '',
   onChange: () => {},
 }
 

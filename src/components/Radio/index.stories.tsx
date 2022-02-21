@@ -45,19 +45,18 @@ basic.parameters = {
   controls: { expanded: true, exclude: /^on*/ },
 }
 
-export const Disabled: ComponentStory<typeof Radio> = (props: any) => {
-  console.log({ props })
-  return (
-    <Radio disabled {...props}>
-      radio button locked
-    </Radio>
-  )
-}
+export const Disabled: ComponentStory<typeof Radio> = () => (
+  <Radio disabled name="locked">
+    radio button locked
+  </Radio>
+)
 
 export const Checked: ComponentStory<typeof Radio> = () => (
-  <Radio checked={true}>radio button checked</Radio>
+  <Radio checked={true} name="checked">
+    radio button checked
+  </Radio>
 )
 
 export const Default: ComponentStory<typeof Radio> = () => (
-  <Radio>radio default</Radio>
+  <Radio name="default">radio default</Radio>
 )
