@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react'
+import React, { ChangeEvent } from 'react'
 
 import cn from 'classnames'
 import PropTypes, { InferProps } from 'prop-types'
