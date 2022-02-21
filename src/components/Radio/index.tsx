@@ -6,8 +6,6 @@ import PropTypes, { InferProps } from 'prop-types'
 // Context
 import { useTheme } from 'context/theme'
 
-import TestButton from '../TestButton'
-
 function Radio(props: radioProps) {
   const {
     children,
@@ -72,7 +70,7 @@ Radio.defaultProps = {
   onChange: () => {},
 }
 
-export type radioProps = InferProps<typeof TestButton.propTypes> &
+export type radioProps = InferProps<typeof Radio.propTypes> &
   JSX.IntrinsicElements['input'] & {
     [key: string]: any
   }
