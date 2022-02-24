@@ -1,6 +1,7 @@
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'
 import Radio from './index'
-import { Checked, Default, Disabled } from './index.stories'
+import * as stories from './index.stories.tsx'
+import { DisableWithState, WithState } from './index.stories'
 
 <Meta
   title="Компоненты/Radio"
@@ -9,6 +10,11 @@ import { Checked, Default, Disabled } from './index.stories'
     actions: { argTypesRegex: '^on.*' },
   }}
   argTypes={{
+    disabled: {
+      control: 'boolean',
+      description: '"disabled" состояние',
+      defaultValue: false,
+    },
     checked: {
       control: 'boolean',
       description: '"checked" состояние',
@@ -17,68 +23,69 @@ import { Checked, Default, Disabled } from './index.stories'
     children: {
       control: { type: 'text' },
       description: 'Содержимое radio (текст)',
+      table: {
+        disable: true,
+      },
     },
     className: {
       control: 'text',
       description: 'Кастомный CSS-класс',
+      table: {
+        disable: true,
+      },
     },
     name: {
       control: 'text',
       description: 'Название группы радиобаттонов',
-      isRequired: true,
-      defaultValue: 'test',
+      defaultValue: '',
+      type: { required: true },
     },
     value: {
       control: 'text',
       description: 'Значение',
-      defaultValue: 'test',
+      table: {
+        summary: '123',
+      },
+      defaultValue: '',
     },
-    onChange: { action: 'changed' },
+    onChange: {
+      action: 'changed',
+      table: {
+        disable: true,
+      },
+    },
   }}
 />
 
 # Radio
 
-## Общая информация
-
-Используется для создания группы радиокнопок (переключателей). Пользователь может выбрать только одну радиокнопку из предложенных.
+## Стилизованный радиобаттон
 
 ### Когда использовать
 
-Всякий раз, когда на странице нужен "кликабельный" элемент 👆
+Когда есть необходимость добавить стилизованный радиобаттон на страницу.
 
-### Внешний вид
+### Примеры использования
 
-Основной вид:
+Основной:
 
 export const Template = (args) => <Radio {...args} />
 
 <Canvas>
-  <Story
-    name="standard"
-    args={{
-      children: 'test',
-      className: 'radio-custom-class',
-    }}
-  >
-    {Template.bind({})}
-  </Story>
+  <Story name="Default" story={stories.basic} />
 </Canvas>
 
-<ArgsTable story="standard" />
+<ArgsTable story="Default" />
 
-Внешний вид радиобаттона может быть следующих значений
+Пример с состоянием:
 
-<Story name="Radio state">
-  <div>
-    <Disabled />
-  </div>
-  <br />
-  <div>
-    <Checked />
-  </div>
-  <br />
-  <div>
-    <Default />
-  </div>
+<Story name='WithState'>
+  <WithState />
+</Story>
+
+
+Пример с "disabled" состоянием:
+
+<Story name='DisableWithState'>
+  <DisableWithState />
 </Story>

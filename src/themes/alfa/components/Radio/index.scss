@@ -25,8 +25,17 @@
   }
 
   &:hover {
+    &::before {
+      border: 1px solid $color-red;
+    }
+  }
+
+  &_checked {
     &::after {
-      background-color: color.adjust($color-red, $green: -29);
+      animation:
+        slide-in-fwd-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+        both;
+      background-color: $color-red;
       border-radius: 50%;
       content: "";
       height: 8px;
@@ -38,12 +47,9 @@
     }
   }
 
-  &_checked {
+  &_checked:hover {
     &::after {
-      animation:
-        slide-in-fwd-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-        both;
-      background-color: $color-red;
+      background-color: color.adjust($color-red, $green: -29);
       border-radius: 50%;
       content: "";
       height: 8px;

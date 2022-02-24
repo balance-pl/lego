@@ -1,14 +1,13 @@
-import React from 'react'
-import { ComponentStory } from '@storybook/react'
+import React, { ChangeEvent, useState } from 'react'
 import Radio from './index'
 
+const BANKS = {
+  AB: 'Абсолют Банк',
+  ALFA: 'Альфа-Банк',
+}
+
 export const basic = (args: any) => {
-  const { children } = args
-  return (
-    <Radio {...args} name={'name'}>
-      {children || 'Children for Radio'}
-    </Radio>
-  )
+  return <Radio {...args}>{BANKS.ALFA}</Radio>
 }
 
 basic.argTypes = {
@@ -29,34 +28,79 @@ basic.argTypes = {
     control: 'text',
     description: 'Название группы радиобаттонов',
     isRequired: true,
-    defaultValue: 'test',
   },
   value: {
     control: 'text',
     description: 'Значение',
-    defaultValue: 'test',
+    defaultValue: '',
   },
   onChange: { action: 'changed' },
 }
 
 basic.parameters = {
-  name: 'test',
-  actions: { argTypesRegex: '^on.*' },
   controls: { expanded: true, exclude: /^on*/ },
 }
 
-export const Disabled: ComponentStory<typeof Radio> = () => (
-  <Radio disabled name="locked">
-    radio button locked
-  </Radio>
-)
+basic.title = 'components/Radio'
 
-export const Checked: ComponentStory<typeof Radio> = () => (
-  <Radio checked={true} name="checked">
-    radio button checked
-  </Radio>
-)
+export const WithState = () => {
+  const [currentValue, setCurrentValue] = useState(BANKS.ALFA)
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setCurrentValue(e?.target?.value)
+  }
 
-export const Default: ComponentStory<typeof Radio> = () => (
-  <Radio name="default">radio default</Radio>
-)
+  return (
+    <>
+      <div style={{ marginBottom: '10px' }}>
+        <Radio
+          name="banks"
+          checked={currentValue === BANKS.ALFA}
+          value={BANKS.ALFA}
+          onChange={handleChange}
+        >
+          {BANKS.ALFA}
+        </Radio>
+      </div>
+      <Radio
+        name="banks"
+        checked={currentValue === BANKS.AB}
+        value={BANKS.AB}
+        onChange={handleChange}
+      >
+        {BANKS.AB}
+      </Radio>
+    </>
+  )
+}
+
+export const DisableWithState = () => {
+  const [currentValue, setCurrentValue] = useState(BANKS.ALFA)
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setCurrentValue(e?.target?.value)
+  }
+
+  return (
+    <>
+      <div style={{ marginBottom: '10px' }}>
+        <Radio
+          name="banks"
+          checked={currentValue === BANKS.ALFA}
+          disabled={true}
+          value={BANKS.ALFA}
+          onChange={handleChange}
+        >
+          {BANKS.ALFA}
+        </Radio>
+      </div>
+      <Radio
+        name="banks"
+        checked={currentValue === BANKS.AB}
+        disabled={true}
+        value={BANKS.AB}
+        onChange={handleChange}
+      >
+        {BANKS.AB}
+      </Radio>
+    </>
+  )
+}

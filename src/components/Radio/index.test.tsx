@@ -7,7 +7,7 @@ import userEvent from '@testing-library/user-event'
 import { render } from 'hoc/with-theme'
 
 import Radio from './index'
-import { Checked, Disabled } from './index.stories'
+import { Disabled } from './index.stories'
 
 describe('Radio', () => {
   it('Should render Radio', () => {
@@ -21,12 +21,6 @@ describe('Radio', () => {
     const label = screen.getByLabelText('')
     expect(label).toBeInTheDocument()
     expect(label?.classList?.contains('radio__style')).toBeTruthy()
-  })
-  it('Должен отобразиться Radio в состоянии checked', () => {
-    render(<Checked name="checked" />)
-    const input = screen.getByRole('radio')
-    expect(input).toBeInTheDocument()
-    expect(input.hasAttribute('checked')).toBeTruthy()
   })
   it('Должен отобразиться Radio с методом onChange', async () => {
     const onChange = jest.fn()

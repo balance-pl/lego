@@ -33,8 +33,8 @@ function Radio(props: radioProps) {
 
   const labelClassName = cn(
     theme.Radio__Label,
-    theme[`Radio__Label${checked ? '_checked' : ''}`],
-    theme[`Radio__Label${disabled ? '_disabled' : ''}`]
+    theme[`${checked ? 'Radio__Label_checked' : ''}`],
+    theme[`${disabled ? 'Radio__Label_disabled' : ''}`]
   )
 
   return (
