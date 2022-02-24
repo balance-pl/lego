@@ -62,7 +62,14 @@
   }
 
   &_disabled {
+    cursor: initial;
     opacity: 0.3;
+  }
+
+  &_disabled:hover {
+    &::before {
+      border: 1px solid $color-grey;
+    }
   }
 }
 

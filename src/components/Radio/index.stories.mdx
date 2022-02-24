@@ -1,22 +1,18 @@
-import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'
+import { ArgsTable, Meta, Story } from '@storybook/addon-docs'
 import Radio from './index'
-import * as stories from './index.stories.tsx'
-import { DisableWithState, WithState } from './index.stories'
+import { Default, Disabled } from './index.stories'
 
 <Meta
   title="Компоненты/Radio"
   component={Radio}
-  parameters={{
-    actions: { argTypesRegex: '^on.*' },
-  }}
   argTypes={{
     disabled: {
-      control: 'boolean',
+      control: false,
       description: '"disabled" состояние',
       defaultValue: false,
     },
     checked: {
-      control: 'boolean',
+      control: false,
       description: '"checked" состояние',
       defaultValue: false,
     },
@@ -35,16 +31,18 @@ import { DisableWithState, WithState } from './index.stories'
       },
     },
     name: {
-      control: 'text',
+      control: false,
       description: 'Название группы радиобаттонов',
       defaultValue: '',
       type: { required: true },
     },
     value: {
-      control: 'text',
+      control: false,
       description: 'Значение',
       table: {
-        summary: '123',
+        type: {
+          summary: 'string, number, null',
+        },
       },
       defaultValue: '',
     },
@@ -53,6 +51,11 @@ import { DisableWithState, WithState } from './index.stories'
       table: {
         disable: true,
       },
+    },
+  }}
+  parameters={{
+    controls: {
+      sort: 'alpha',
     },
   }}
 />
@@ -67,25 +70,30 @@ import { DisableWithState, WithState } from './index.stories'
 
 ### Примеры использования
 
-Основной:
-
 export const Template = (args) => <Radio {...args} />
-
-<Canvas>
-  <Story name="Default" story={stories.basic} />
-</Canvas>
-
-<ArgsTable story="Default" />
 
 Пример с состоянием:
 
-<Story name='WithState'>
-  <WithState />
+<Story
+  name="Default"
+  parameters={{
+    controls: { hideNoControlsWarning: true, exclude: ['checked', 'boolean'] },
+  }}
+>
+  <Default />
 </Story>
-
 
 Пример с "disabled" состоянием:
 
-<Story name='DisableWithState'>
-  <DisableWithState />
+<Story
+  name="Disabled"
+  parameters={{
+    controls: false,
+    include: ['onChange'],
+    exclude: ['checked'],
+  }}
+>
+  <Disabled />
 </Story>
+
+<ArgsTable story={'Default'} />

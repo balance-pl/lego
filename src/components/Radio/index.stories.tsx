@@ -43,7 +43,7 @@ basic.parameters = {
 
 basic.title = 'components/Radio'
 
-export const WithState = () => {
+export const Default = () => {
   const [currentValue, setCurrentValue] = useState(BANKS.ALFA)
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCurrentValue(e?.target?.value)
@@ -73,7 +73,7 @@ export const WithState = () => {
   )
 }
 
-export const DisableWithState = () => {
+export const Disabled = () => {
   const [currentValue, setCurrentValue] = useState(BANKS.ALFA)
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCurrentValue(e?.target?.value)
