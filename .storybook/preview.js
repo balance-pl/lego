@@ -1,33 +1,34 @@
+import { useEffect } from 'react'
+
+// Constants
+import { DESCRIPTION, THEME, THEME_NAME } from './constant'
+
+// Theme
 import { ThemeProvider } from '../src/context/theme'
-
-import themeAlfa from '../src/themes/alfa/theme.module.scss'
-
-import theme from '../src/themes/default/theme.module.scss'
 
 export const globalTypes = {
   theme: {
-    name: 'Theme',
-    description: 'Global theme for components',
-    defaultValue: 'default',
+    name: 'Тема',
+    description: DESCRIPTION,
+    defaultValue: THEME_NAME.DEFAULT,
     toolbar: {
-      items: ['alfa', 'default'],
+      icon: 'mirror',
+      items: Object.values(THEME_NAME),
       showName: true,
     },
   },
 }
 
-const getTheme = (themeName) => {
-  switch (themeName) {
-    case 'alfa': {
-      return themeAlfa
-    }
-    default:
-      return theme
-  }
-}
-
 const withThemeProvider = (Story, context) => {
-  const theme = getTheme(context.globals.theme)
+  const theme = THEME[context.globals.theme]
+  useEffect(() => {
+    const headerTheme = window.parent.document.querySelector(
+      `button[title="${DESCRIPTION}"]`
+    )
+    if (headerTheme) {
+      headerTheme.childNodes[1].textContent = context.globals.theme
+    }
+  }, [context.globals.theme])
   return (
     <ThemeProvider value={theme}>
       <Story {...context} />
