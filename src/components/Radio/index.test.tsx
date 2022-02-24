@@ -7,7 +7,6 @@ import userEvent from '@testing-library/user-event'
 import { render } from 'hoc/with-theme'
 
 import Radio from './index'
-import { Disabled } from './index.stories'
 
 describe('Radio', () => {
   it('Should render Radio', () => {
@@ -33,7 +32,7 @@ describe('Radio', () => {
   })
 
   it('Должен отобразиться Radio в состоянии disabled', () => {
-    render(<Disabled name="locked" />)
+    render(<Radio name="locked" disabled />)
     const input = screen.getByRole('radio')
     expect(input).toBeInTheDocument()
     expect(input.hasAttribute('disabled')).toBeTruthy()
