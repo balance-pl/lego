@@ -1,4 +1,4 @@
-import { ArgsTable, Meta, Story } from '@storybook/addon-docs'
+import { ArgsTable, Meta, Preview, Story } from '@storybook/addon-docs'
 import Radio from './index'
 import { Default, Disabled } from './index.stories'
 
@@ -72,26 +72,88 @@ export const Template = (args) => <Radio {...args} />
 
 Обычные радиобаттоны:
 
-<Story
-  name="Default"
-  parameters={{
-    controls: { hideNoControlsWarning: true, exclude: ['checked', 'boolean'] },
-  }}
+<Preview
+  mdxSource={`
+  <Radio
+    name="banks"
+    checked={currentValue === BANKS.ALFA}
+    value={BANKS.ALFA}
+    onChange={handleChange}
+  >
+    {BANKS.ALFA}
+  </Radio>
+  <Radio
+    name="banks"
+    checked={currentValue === BANKS.ALFA}
+    value={BANKS.ALFA}
+    onChange={handleChange}
+  >
+    {BANKS.ALFA}
+  </Radio>
+`}
 >
-  <Default />
-</Story>
+  <Story
+    name="Default"
+    parameters={{
+      controls: {
+        hideNoControlsWarning: true,
+        exclude: ['checked', 'boolean'],
+      },
+    }}
+  >
+    <Default />
+  </Story>
+</Preview>
 
 "disabled" радиобаттоны:
 
-<Story
-  name="Disabled"
-  parameters={{
-    controls: false,
-    include: ['onChange'],
-    exclude: ['checked'],
-  }}
+<Preview
+  mdxSource={`
+  <Radio
+    name="banks"
+    checked={currentValue === BANKS.ALFA}
+    disabled
+    value={BANKS.ALFA}
+    onChange={handleChange}
+  >
+    {BANKS.ALFA}
+  </Radio>
+  <Radio
+    name="banks"
+    checked={currentValue === BANKS.ALFA}
+    disabled
+    value={BANKS.ALFA}
+    onChange={handleChange}
+  >
+    {BANKS.ALFA}
+  </Radio>
+`}
 >
-  <Disabled />
-</Story>
+  <Story
+    name="Disabled"
+    parameters={{
+      controls: false,
+      include: ['onChange'],
+      exclude: ['checked'],
+    }}
+  >
+    <Disabled />
+  </Story>
+</Preview>
+
+### Cвойства
 
 <ArgsTable story={'Default'} />
+
+### CSS-классы
+
+```scss
+.Radio {
+}
+.Radio__Label {
+}
+.Radio_checked {
+}
+.Radio_disabled {
+}
+```
