@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useLayoutEffect, useState } from 'react'
+import React, { MouseEvent, useLayoutEffect, useState } from 'react'
 
 import cn from 'classnames'
 import PropTypes, { InferProps } from 'prop-types'
@@ -9,7 +9,7 @@ import { APPEARANCE, SIZE } from './constants'
 // Context
 import { useTheme } from 'context/theme'
 
-function Tabs(props: tabsProps) {
+function Tabs(props: Props) {
   const {
     appearance,
     className: cls,
@@ -42,7 +42,7 @@ function Tabs(props: tabsProps) {
 
   const handleChange = (
     id: string | number | null,
-    event: MouseEventHandler<HTMLButtonElement>
+    event: MouseEvent<HTMLButtonElement>
   ): void => {
     if (disabled) {
       return
@@ -64,15 +64,14 @@ function Tabs(props: tabsProps) {
           const isActive = id === value
           return (
             <button
-              className={cn(
-                theme.Tab,
-                theme[`${isActive ? 'Tab_active' : ''}`]
-              )}
+              className={cn(theme.Tab, {
+                [theme.Tab_active]: isActive,
+              })}
               id={id?.toString()}
               key={id}
               role="tab"
               tabIndex={index}
-              onClick={(event: MouseEventHandler<HTMLButtonElement>): void => {
+              onClick={(event: MouseEvent<HTMLButtonElement>): void => {
                 handleChange(id, event)
               }}
             >
@@ -111,9 +110,13 @@ Tabs.defaultProps = {
   onChange: () => {},
 }
 
-export type tabsProps = InferProps<typeof Tabs.propTypes> &
-  JSX.IntrinsicElements['input'] & {
-    [key: string]: any
-  }
+export type Props = InferProps<typeof Tabs.propTypes> & {
+  onChange?: (
+    id: string | number | null,
+    event: MouseEvent<HTMLButtonElement>
+  ) => void
+} & {
+  [key: string]: any
+}
 
 export default Tabs

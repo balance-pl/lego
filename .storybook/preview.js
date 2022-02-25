@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 
 // Addons
 import { withConsole } from '@storybook/addon-console'
-
 ;('@storybook/addon-console')
 
 // Constants

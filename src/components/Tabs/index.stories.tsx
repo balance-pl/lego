@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { MouseEvent, useState } from 'react'
 import { ComponentStory } from '@storybook/react'
 import Tabs from './index'
 
@@ -57,7 +57,10 @@ export const Checked: ComponentStory<typeof Tabs> = () => (
 
 export const Default: ComponentStory<typeof Tabs> = () => {
   const [currentOption, setCurrentOption] = useState(0)
-  const handleChange = (id: number | string | null) => {
+  const handleChange = (
+    id: string | number | null,
+    event: MouseEvent<HTMLButtonElement>
+  ) => {
     console.log(id)
     const currentId: number = typeof id === 'string' ? +id : 0
     setCurrentOption(currentId)
