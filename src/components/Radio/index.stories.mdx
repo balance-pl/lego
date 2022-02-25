@@ -1,0 +1,97 @@
+import { ArgsTable, Meta, Story } from '@storybook/addon-docs'
+import Radio from './index'
+import { Default, Disabled } from './index.stories'
+
+<Meta
+  title="Компоненты/Radio"
+  component={Radio}
+  argTypes={{
+    disabled: {
+      control: false,
+      description: '"disabled" состояние',
+      defaultValue: false,
+    },
+    checked: {
+      control: false,
+      description: '"checked" состояние',
+      defaultValue: false,
+    },
+    children: {
+      control: { type: 'text' },
+      description: 'Содержимое radio (текст)',
+      table: {
+        disable: true,
+      },
+    },
+    className: {
+      control: 'text',
+      description: 'Кастомный CSS-класс',
+      table: {
+        disable: true,
+      },
+    },
+    name: {
+      control: false,
+      description: 'Название группы радиобаттонов',
+      defaultValue: '',
+      type: { required: true },
+    },
+    value: {
+      control: false,
+      description: 'Значение',
+      table: {
+        type: {
+          summary: 'string, number, null',
+        },
+      },
+      defaultValue: '',
+    },
+    onChange: {
+      action: 'changed',
+      table: {
+        disable: true,
+      },
+    },
+  }}
+  parameters={{
+    controls: {
+      sort: 'alpha',
+    },
+  }}
+/>
+
+# Radio
+
+## Стилизованный радиобаттон
+
+Использовать всякий раз, когда есть необходимость добавить радиобаттон на страницу
+
+### Примеры использования
+
+export const Template = (args) => <Radio {...args} />
+
+Обычные радиобаттоны:
+
+<Story
+  name="Default"
+  parameters={{
+    controls: { hideNoControlsWarning: true, exclude: ['checked', 'boolean'] },
+  }}
+>
+  <Default />
+</Story>
+
+"disabled" радиобаттоны:
+
+<Story
+  name="Disabled"
+  parameters={{
+    controls: false,
+    include: ['onChange'],
+    exclude: ['checked'],
+  }}
+>
+  <Disabled />
+</Story>
+
+<ArgsTable story={'Default'} />
