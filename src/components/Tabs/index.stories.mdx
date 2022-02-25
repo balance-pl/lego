@@ -1,0 +1,105 @@
+import { ArgsTable, Meta, Story } from '@storybook/addon-docs'
+import Tabs from './index'
+import { Default, Disabled } from './index.stories'
+
+<Meta
+  title="Компоненты/Tabs"
+  component={Tabs}
+  argTypes={{
+    appearance: {
+      control: 'select',
+      description: 'Внешний вид',
+      defaultValue: 'primary',
+      options: ['primary', 'secondary'],
+    },
+    disabled: {
+      control: 'boolean',
+      description: '"disabled" состояние',
+      defaultValue: false,
+    },
+    className: {
+      control: 'text',
+      description: 'Кастомный CSS-класс',
+      table: {
+        disable: true,
+      },
+    },
+    size: {
+      control: 'select',
+      description: 'размер',
+      defaultValue: 'm',
+      options: ['s', 'm', 'l'],
+    },
+    options: {
+      control: 'object',
+      description: 'список опций (табов)',
+      defaultValue: [],
+      table: {
+        type: {
+          summary: '[{id: string, name: string}]',
+        },
+      },
+    },
+    value: {
+      control: false,
+      description: 'Значение опции (таба) - id',
+      table: {
+        type: {
+          summary: 'number, string, null',
+        },
+      },
+      defaultValue: 'null',
+    },
+    onChange: {
+      action: 'changed',
+      description: 'Событие изменения значения',
+      table: {
+        type: {
+          summary: 'func',
+        },
+      },
+      defaultValue: '(value, e) => void',
+    },
+  }}
+  parameters={{
+    controls: {
+      sort: 'alpha',
+    },
+  }}
+/>
+
+# Tabs
+
+## Tabs - какое-то описание
+
+Использовать, когда нужно предоставить выбор один из множества
+
+### Примеры использования
+
+export const Template = (args) => <Tabs {...args} />
+
+Обычные tabs:
+
+<Story
+  name="Default"
+  parameters={{
+    controls: { hideNoControlsWarning: true, exclude: ['checked', 'boolean'] },
+  }}
+>
+  <Default />
+</Story>
+
+"disabled" tabs:
+
+<Story
+  name="Disabled"
+  parameters={{
+    controls: false,
+    include: ['onChange'],
+    exclude: ['checked'],
+  }}
+>
+  <Disabled />
+</Story>
+
+<ArgsTable story={'Default'} />

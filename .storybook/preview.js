@@ -1,5 +1,10 @@
 import { useEffect } from 'react'
 
+// Addons
+import { withConsole } from '@storybook/addon-console'
+
+;('@storybook/addon-console')
+
 // Constants
 import { DESCRIPTION, THEME, THEME_NAME } from './constant'
 
@@ -36,7 +41,9 @@ const withThemeProvider = (Story, context) => {
   )
 }
 
-export const decorators = [withThemeProvider]
+const withConsoleDecorator = (Story, context) => withConsole()(Story)(context)
+
+export const decorators = [withThemeProvider, withConsoleDecorator]
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },

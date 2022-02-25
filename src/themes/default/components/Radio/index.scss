@@ -70,6 +70,10 @@
     &::before {
       border: 1px solid $color-grey;
     }
+
+    &::after {
+      background-color: $color-blue;
+    }
   }
 }
 
