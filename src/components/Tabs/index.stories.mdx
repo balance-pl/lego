@@ -1,6 +1,11 @@
-import { ArgsTable, Meta, Story } from '@storybook/addon-docs'
+import { ArgsTable, Meta, Preview, Story } from '@storybook/addon-docs'
 import Tabs from './index'
-import { Default, Disabled } from './index.stories'
+import {
+  Default,
+  Disabled,
+  Secondary,
+  SecondaryDisabled,
+} from './index.stories'
 
 <Meta
   title="Компоненты/Tabs"
@@ -80,26 +85,130 @@ export const Template = (args) => <Tabs {...args} />
 
 Обычные tabs:
 
-<Story
-  name="Default"
-  parameters={{
-    controls: { hideNoControlsWarning: true, exclude: ['checked', 'boolean'] },
-  }}
+<Preview
+  mdxSource={`
+    <Tabs
+      options={[
+        { id: 1, name: 'Option 1' },
+        { id: 2, name: 'Option 2' },
+        { id: 3, name: 'Option 3' }
+      ]}
+      value={currentOption}
+      onChange={handleChange}
+    />
+`}
 >
-  <Default />
-</Story>
+  <Story
+    name="Default"
+    parameters={{
+      controls: {
+        hideNoControlsWarning: true,
+        exclude: ['checked', 'boolean'],
+      },
+    }}
+  >
+    <Default />
+  </Story>
+</Preview>
 
 "disabled" tabs:
 
-<Story
-  name="Disabled"
-  parameters={{
-    controls: false,
-    include: ['onChange'],
-    exclude: ['checked'],
-  }}
+<Preview
+  mdxSource={`
+    <Tabs
+      disabled={true}
+      options={[
+        { id: 1, name: 'Option 1' },
+        { id: 2, name: 'Option 2' },
+        { id: 3, name: 'Option 3' }
+      ]}
+      value={currentOption}
+      onChange={handleChange}
+    />
+`}
 >
-  <Disabled />
-</Story>
+  <Story
+    name="Disabled"
+    parameters={{
+      controls: false,
+      include: ['onChange'],
+      exclude: ['checked'],
+    }}
+  >
+    <Disabled />
+  </Story>
+</Preview>
+
+Внешний вид:
+
+<Preview
+  mdxSource={`
+    <Tabs
+      appearance={APPEARANCE.SECONDARY}
+      options={[
+        { id: 1, name: 'Option 1' },
+        { id: 2, name: 'Option 2' },
+        { id: 3, name: 'Option 3' }
+      ]}
+      value={currentOption}
+      onChange={handleChange}
+    />
+`}
+>
+  <Story name="Secondary">
+    <Secondary />
+  </Story>
+</Preview>
+
+Внешний вид secondary, состояние disabled:
+
+<Preview
+  mdxSource={`
+    <Tabs
+      appearance={APPEARANCE.SECONDARY}
+      disabled={true}
+      options={[
+        { id: 1, name: 'Option 1' },
+        { id: 2, name: 'Option 2' },
+        { id: 3, name: 'Option 3' }
+      ]}
+      value={currentOption}
+      onChange={handleChange}
+    />
+`}
+>
+  <Story name="SecondaryDisabled">
+    <SecondaryDisabled />
+  </Story>
+</Preview>
 
 <ArgsTable story={'Default'} />
+
+### CSS-классы
+
+```scss
+.Tab {
+}
+.Tab_active {
+}
+.Tabs {
+}
+.Tabs_disabled {
+}
+.Tabs_appearance_primary {
+}
+.Tabs_appearance_secondary {
+}
+.Tabs_disabled {
+}
+.Tabs_size_s {
+}
+.Tabs_size_m {
+}
+.Tabs_size_l {
+}
+```
+
+''css
+: string
+''

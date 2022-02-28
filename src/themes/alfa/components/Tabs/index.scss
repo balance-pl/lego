@@ -22,8 +22,8 @@ $secondary-active-bg-color: #d5d5d5;
     }
 
     .Tab_active:hover {
-      background-color: $color-blue;
-      border: 1px solid $color-blue;
+      background-color: $color-red;
+      border: 1px solid $color-red;
       color: $color-white;
     }
   }
@@ -82,14 +82,14 @@ $secondary-active-bg-color: #d5d5d5;
   }
 
   &_active {
-    background-color: $color-blue;
-    border: 1px solid $color-blue;
+    background-color: $color-red;
+    border: 1px solid $color-red;
     color: $color-white;
   }
 
   &:hover {
-    background-color: color.adjust($color-blue, $green: -29);
-    border: 1px solid color.adjust($color-blue, $green: -29);
+    background-color: color.adjust($color-red, $green: -29);
+    border: 1px solid color.adjust($color-red, $green: -29);
     color: $color-white;
   }
 }

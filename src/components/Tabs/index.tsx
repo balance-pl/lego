@@ -26,7 +26,7 @@ function Tabs(props: Props) {
   const className = cn(
     theme.Tabs,
     theme[`Tabs_appearance_${appearance}`],
-    theme[`${disabled ? 'Tabs_disabled' : ''}`],
+    { [theme.Tabs_disabled]: disabled },
     theme[`Tabs_size_${size}`],
     cls
   )
@@ -47,7 +47,6 @@ function Tabs(props: Props) {
     if (disabled) {
       return
     }
-    console.log({ id }, { event })
     if (typeof onChange === 'function') {
       onChange(id, event)
     }
@@ -61,7 +60,7 @@ function Tabs(props: Props) {
             return null
           }
           const { id = '', name = '' } = elem
-          const isActive = id === value
+          const isActive = id?.toString() === value?.toString()
           return (
             <button
               className={cn(theme.Tab, {
