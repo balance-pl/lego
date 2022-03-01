@@ -74,7 +74,6 @@ function Tabs(props: Props) {
                 className={theme.Tab__radio}
                 type="radio"
                 id={id?.toString()}
-                role="tab"
                 tabIndex={index}
                 onChange={(event: ChangeEvent<HTMLInputElement>): void => {
                   handleChange(id, event)
