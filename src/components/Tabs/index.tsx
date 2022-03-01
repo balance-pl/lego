@@ -1,4 +1,4 @@
-import React, { MouseEvent, useEffect, useState } from 'react'
+import React, { FormEvent, useEffect, useState } from 'react'
 
 import cn from 'classnames'
 import PropTypes, { InferProps } from 'prop-types'
@@ -40,10 +40,8 @@ function Tabs(props: Props) {
     }
   }, [currentOption, options])
 
-  const handleChange = (
-    id: string | number | null,
-    event: MouseEvent
-  ): void => {
+  const handleChange = (id: string | number | null, event: FormEvent): void => {
+    event.preventDefault()
     if (disabled) {
       return
     }
@@ -68,16 +66,14 @@ function Tabs(props: Props) {
               })}
               key={id}
               role="tab"
-              onClick={(event: MouseEvent): void => {
+              id={id?.toString()}
+              tabIndex={index}
+              onClick={(event: FormEvent): void => {
+                console.log('Click')
                 handleChange(id, event)
               }}
             >
-              <input
-                className={theme.Tab__radio}
-                type="radio"
-                id={id?.toString()}
-                tabIndex={index}
-              />
+              <input className={theme.Tab__radio} type="radio" />
               {name}
             </label>
           )
@@ -114,10 +110,7 @@ Tabs.defaultProps = {
 }
 
 export type Props = InferProps<typeof Tabs.propTypes> & {
-  onChange?: (
-    id: string | number | null,
-    event: MouseEvent<HTMLInputElement>
-  ) => void
+  onChange?: (id: string | number | null, event: FormEvent) => void
 } & {
   [key: string]: any
 }
