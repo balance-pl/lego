@@ -102,5 +102,8 @@
   "peerDependencies": {
     "prop-types": "^15.8.1",
     "react": "^17.0.2"
+  },
+  "dependencies": {
+    "@storybook/addon-docs": "^6.4.19"
   }
 }

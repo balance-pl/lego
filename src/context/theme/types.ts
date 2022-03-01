@@ -17,6 +17,7 @@ export type Theme = {
   Tabs_size_s: string
   Tabs_size_m: string
   Tabs_size_l: string
+  Tab__radio: string
 } & {
   [key: string]: string
 }

@@ -1,7 +1,7 @@
 @use "sass:color";
 
 $primary-bg-color: $color-white;
-$primary-b-color: $color-grey;
+$primary-b-color: #e6e6e6;
 
 $secondary-bg-color: #e5e5e5;
 $secondary-b-color: #cdcdcd;
@@ -16,7 +16,7 @@ $secondary-active-bg-color: #d5d5d5;
 
     .Tab:hover {
       background-color: $color-white;
-      border: 1px solid $color-grey;
+      border: 1px solid $primary-b-color;
       color: initial;
       cursor: initial;
     }
@@ -31,30 +31,35 @@ $secondary-active-bg-color: #d5d5d5;
   &_appearance_secondary {
     .Tab {
       background-color: $secondary-bg-color;
-      border-color: $secondary-b-color;
+      border-color: $primary-b-color;
     }
 
     .Tab_active {
-      background-color: $secondary-active-bg-color;
-      border-color: $secondary-active-bg-color;
+      background-color: $color-red;
+      border-color: $color-red;
     }
 
     .Tab:hover {
-      background-color: $secondary-active-bg-color;
       border-color: $secondary-active-bg-color;
       color: initial;
+    }
+
+    .Tab_active:hover {
+      background-color: $secondary-active-bg-color;
+      border-color: $secondary-active-bg-color;
     }
   }
 
   &_disabled.Tabs_appearance_secondary {
     .Tab:hover {
       background-color: $secondary-bg-color;
-      border-color: $secondary-bg-color;
+      border-color: $primary-b-color;
       color: initial;
     }
 
     .Tab_active:hover {
-      background-color: $secondary-active-bg-color;
+      background-color: $color-red;
+      border-color: $color-red;
       color: $color-white;
     }
   }
@@ -62,13 +67,18 @@ $secondary-active-bg-color: #d5d5d5;
 
 .Tab {
   background-color: $color-white;
-  border: 1px solid $color-grey;
+  border: 1px solid $primary-b-color;
   box-sizing: border-box;
   cursor: pointer;
   font-size: 14px;
   font-weight: bold;
+  line-height: 19px;
   margin-left: -1px;
   padding: 10px 15px;
+  transition:
+    border-color 0.2s ease-in-out,
+    background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
 
   &:first-child {
     border-bottom-left-radius: 4px;
@@ -81,15 +91,25 @@ $secondary-active-bg-color: #d5d5d5;
     border-top-right-radius: 4px;
   }
 
+  &:hover {
+    border: 1px solid $color-red;
+    z-index: 1;
+  }
+
   &_active {
     background-color: $color-red;
     border: 1px solid $color-red;
     color: $color-white;
+    z-index: 2;
   }
 
-  &:hover {
+  &_active:hover {
     background-color: color.adjust($color-red, $green: -29);
     border: 1px solid color.adjust($color-red, $green: -29);
     color: $color-white;
   }
+}
+
+.Tab__radio {
+  display: none;
 }

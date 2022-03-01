@@ -1,4 +1,4 @@
-import { ArgsTable, Meta, Preview, Story } from '@storybook/addon-docs'
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'
 import Radio from './index'
 import { Default, Disabled } from './index.stories'
 
@@ -9,12 +9,16 @@ import { Default, Disabled } from './index.stories'
     disabled: {
       control: false,
       description: '"disabled" состояние',
-      defaultValue: false,
+      table: {
+        defaultValue: false,
+      },
     },
     checked: {
       control: false,
       description: '"checked" состояние',
-      defaultValue: false,
+      table: {
+        defaultValue: false,
+      },
     },
     children: {
       control: { type: 'text' },
@@ -33,18 +37,17 @@ import { Default, Disabled } from './index.stories'
     name: {
       control: false,
       description: 'Название группы радиобаттонов',
-      defaultValue: '',
       type: { required: true },
     },
     value: {
       control: false,
       description: 'Значение',
       table: {
+        defaultValue: '',
         type: {
           summary: 'string, number, null',
         },
       },
-      defaultValue: '',
     },
     onChange: {
       action: 'changed',
@@ -72,7 +75,7 @@ export const Template = (args) => <Radio {...args} />
 
 Обычные радиобаттоны:
 
-<Preview
+<Canvas
   mdxSource={`
   <Radio
     name="banks"
@@ -103,11 +106,11 @@ export const Template = (args) => <Radio {...args} />
   >
     <Default />
   </Story>
-</Preview>
+</Canvas>
 
 "disabled" радиобаттоны:
 
-<Preview
+<Canvas
   mdxSource={`
   <Radio
     name="banks"
@@ -139,7 +142,7 @@ export const Template = (args) => <Radio {...args} />
   >
     <Disabled />
   </Story>
-</Preview>
+</Canvas>
 
 ### Cвойства
 

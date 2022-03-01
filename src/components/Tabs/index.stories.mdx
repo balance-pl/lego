@@ -1,11 +1,10 @@
-import { ArgsTable, Meta, Preview, Story } from '@storybook/addon-docs'
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'
+
+import { APPEARANCE } from './constants'
+
+import { Disabled } from './index.stories'
+
 import Tabs from './index'
-import {
-  Default,
-  Disabled,
-  Secondary,
-  SecondaryDisabled,
-} from './index.stories'
 
 <Meta
   title="Компоненты/Tabs"
@@ -14,46 +13,55 @@ import {
     appearance: {
       control: 'select',
       description: 'Внешний вид',
-      defaultValue: 'primary',
+      table: {
+        defaultValue: APPEARANCE.PRIMARY,
+        summary: APPEARANCE.PRIMARY,
+      },
       options: ['primary', 'secondary'],
     },
     disabled: {
       control: 'boolean',
       description: '"disabled" состояние',
-      defaultValue: false,
+      table: {
+        defaultValue: false,
+        summary: false,
+      },
     },
     className: {
       control: 'text',
       description: 'Кастомный CSS-класс',
       table: {
+        defaultValue: '',
         disable: true,
       },
     },
     size: {
       control: 'select',
       description: 'размер',
-      defaultValue: 'm',
+      table: {
+        defaultValue: 'm',
+      },
       options: ['s', 'm', 'l'],
     },
     options: {
       control: 'object',
       description: 'список опций (табов)',
-      defaultValue: [],
       table: {
         type: {
           summary: '[{id: string, name: string}]',
         },
+        defaultValue: [],
       },
     },
     value: {
-      control: false,
+      control: 'text',
       description: 'Значение опции (таба) - id',
       table: {
         type: {
           summary: 'number, string, null',
         },
+        defaultValue: 'null',
       },
-      defaultValue: 'null',
     },
     onChange: {
       action: 'changed',
@@ -62,8 +70,8 @@ import {
         type: {
           summary: 'func',
         },
+        defaultValue: '(value, e) => void',
       },
-      defaultValue: '(value, e) => void',
     },
   }}
   parameters={{
@@ -75,7 +83,7 @@ import {
 
 # Tabs
 
-## Tabs - какое-то описание
+## Стилизованные табы
 
 Использовать, когда нужно предоставить выбор один из множества
 
@@ -85,104 +93,84 @@ export const Template = (args) => <Tabs {...args} />
 
 Обычные tabs:
 
-<Preview
-  mdxSource={`
-    <Tabs
-      options={[
+<Canvas>
+  <Story
+    name="Primary"
+    args={{
+      appearance: APPEARANCE.PRIMARY,
+      options: [
         { id: 1, name: 'Option 1' },
         { id: 2, name: 'Option 2' },
-        { id: 3, name: 'Option 3' }
-      ]}
-      value={currentOption}
-      onChange={handleChange}
-    />
-`}
->
-  <Story
-    name="Default"
-    parameters={{
-      controls: {
-        hideNoControlsWarning: true,
-        exclude: ['checked', 'boolean'],
-      },
+        { id: 3, name: 'Option 3' },
+      ],
+      value: 2,
     }}
   >
-    <Default />
+    {Template.bind({})}
   </Story>
-</Preview>
+</Canvas>
+
+Внешний вид secondary:
+
+<Canvas>
+  <Story
+    name="Secondary"
+    args={{
+      appearance: APPEARANCE.SECONDARY,
+      options: [
+        { id: 1, name: 'Option 1' },
+        { id: 2, name: 'Option 2' },
+        { id: 3, name: 'Option 3' },
+      ],
+      value: 2,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
 
 "disabled" tabs:
 
-<Preview
+<Canvas
   mdxSource={`
+  <div>
     <Tabs
+      appearance={APPEARANCE.PRIMARY}
       disabled={true}
       options={[
         { id: 1, name: 'Option 1' },
         { id: 2, name: 'Option 2' },
         { id: 3, name: 'Option 3' }
       ]}
-      value={currentOption}
-      onChange={handleChange}
+      value={2}
     />
+    <Tabs
+      appearance={APPEARANCE.SECONDARY}
+      disabled={true}
+      options={[
+        { id: 1, name: 'Option 1' },
+        { id: 2, name: 'Option 2' },
+        { id: 3, name: 'Option 3' }
+      ]}
+      value={2}
+    />
+  </div>
 `}
 >
   <Story
     name="Disabled"
     parameters={{
-      controls: false,
-      include: ['onChange'],
-      exclude: ['checked'],
+      controls: {
+        hideNoControlsWarning: true,
+        exclude: ['onChange'],
+      },
     }}
   >
     <Disabled />
   </Story>
-</Preview>
+</Canvas>
 
-Внешний вид:
-
-<Preview
-  mdxSource={`
-    <Tabs
-      appearance={APPEARANCE.SECONDARY}
-      options={[
-        { id: 1, name: 'Option 1' },
-        { id: 2, name: 'Option 2' },
-        { id: 3, name: 'Option 3' }
-      ]}
-      value={currentOption}
-      onChange={handleChange}
-    />
-`}
->
-  <Story name="Secondary">
-    <Secondary />
-  </Story>
-</Preview>
-
-Внешний вид secondary, состояние disabled:
-
-<Preview
-  mdxSource={`
-    <Tabs
-      appearance={APPEARANCE.SECONDARY}
-      disabled={true}
-      options={[
-        { id: 1, name: 'Option 1' },
-        { id: 2, name: 'Option 2' },
-        { id: 3, name: 'Option 3' }
-      ]}
-      value={currentOption}
-      onChange={handleChange}
-    />
-`}
->
-  <Story name="SecondaryDisabled">
-    <SecondaryDisabled />
-  </Story>
-</Preview>
-
-<ArgsTable story={'Default'} />
+<ArgsTable story={'Primary'} />
 
 ### CSS-классы
 
@@ -206,5 +194,7 @@ export const Template = (args) => <Tabs {...args} />
 .Tabs_size_m {
 }
 .Tabs_size_l {
+}
+.Tab__radio {
 }
 ```

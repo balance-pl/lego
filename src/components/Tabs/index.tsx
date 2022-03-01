@@ -1,4 +1,4 @@
-import React, { MouseEvent, useLayoutEffect, useState } from 'react'
+import React, { ChangeEvent, MouseEvent, useEffect, useState } from 'react'
 
 import cn from 'classnames'
 import PropTypes, { InferProps } from 'prop-types'
@@ -31,7 +31,7 @@ function Tabs(props: Props) {
     cls
   )
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (options && options?.length !== 0 && !currentOption) {
       const startCurrent = options[0]?.id || null
       if (startCurrent) {
@@ -42,7 +42,7 @@ function Tabs(props: Props) {
 
   const handleChange = (
     id: string | number | null,
-    event: MouseEvent<HTMLButtonElement>
+    event: ChangeEvent<HTMLInputElement>
   ): void => {
     if (disabled) {
       return
@@ -59,23 +59,29 @@ function Tabs(props: Props) {
           if (!elem) {
             return null
           }
+          console.log({ elem })
           const { id = '', name = '' } = elem
           const isActive = id?.toString() === value?.toString()
           return (
-            <button
+            <label
               className={cn(theme.Tab, {
                 [theme.Tab_active]: isActive,
               })}
-              id={id?.toString()}
               key={id}
               role="tab"
-              tabIndex={index}
-              onClick={(event: MouseEvent<HTMLButtonElement>): void => {
-                handleChange(id, event)
-              }}
             >
+              <input
+                className={theme.Tab__radio}
+                type="radio"
+                id={id?.toString()}
+                role="tab"
+                tabIndex={index}
+                onChange={(event: ChangeEvent<HTMLInputElement>): void => {
+                  handleChange(id, event)
+                }}
+              />
               {name}
-            </button>
+            </label>
           )
         })}
     </div>
@@ -112,7 +118,7 @@ Tabs.defaultProps = {
 export type Props = InferProps<typeof Tabs.propTypes> & {
   onChange?: (
     id: string | number | null,
-    event: MouseEvent<HTMLButtonElement>
+    event: MouseEvent<HTMLInputElement>
   ) => void
 } & {
   [key: string]: any
