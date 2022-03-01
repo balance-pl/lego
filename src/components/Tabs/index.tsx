@@ -1,4 +1,4 @@
-import React, { ChangeEvent, MouseEvent, useEffect, useState } from 'react'
+import React, { MouseEvent, useEffect, useState } from 'react'
 
 import cn from 'classnames'
 import PropTypes, { InferProps } from 'prop-types'
@@ -42,7 +42,7 @@ function Tabs(props: Props) {
 
   const handleChange = (
     id: string | number | null,
-    event: ChangeEvent<HTMLInputElement>
+    event: MouseEvent
   ): void => {
     if (disabled) {
       return
@@ -59,7 +59,6 @@ function Tabs(props: Props) {
           if (!elem) {
             return null
           }
-          console.log({ elem })
           const { id = '', name = '' } = elem
           const isActive = id?.toString() === value?.toString()
           return (
@@ -69,15 +68,15 @@ function Tabs(props: Props) {
               })}
               key={id}
               role="tab"
+              onClick={(event: MouseEvent): void => {
+                handleChange(id, event)
+              }}
             >
               <input
                 className={theme.Tab__radio}
                 type="radio"
                 id={id?.toString()}
                 tabIndex={index}
-                onChange={(event: ChangeEvent<HTMLInputElement>): void => {
-                  handleChange(id, event)
-                }}
               />
               {name}
             </label>

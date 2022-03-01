@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'
 
 import { APPEARANCE } from './constants'
@@ -91,6 +92,20 @@ import Tabs from './index'
 
 export const Template = (args) => <Tabs {...args} />
 
+export const TabsTemplateState = (args) => {
+  const { value } = args
+  const [currentValue, setCurrentValue] = useState(null)
+  useEffect(() => {
+    if (value) {
+      setCurrentValue(value)
+    }
+  }, [value])
+  const handleChange = (id) => {
+    setCurrentValue(id)
+  }
+  return <Tabs {...args} value={currentValue} onChange={handleChange} />
+}
+
 Обычные tabs:
 
 <Canvas>
@@ -105,8 +120,15 @@ export const Template = (args) => <Tabs {...args} />
       ],
       value: 2,
     }}
+    parameters={{
+      viewMode: 'docs',
+      previewTabs: {
+        canvas: { hidden: false, title: false },
+      },
+      options: { showPanel: true}
+    }}
   >
-    {Template.bind({})}
+    {TabsTemplateState.bind({})}
   </Story>
 </Canvas>
 
@@ -124,8 +146,11 @@ export const Template = (args) => <Tabs {...args} />
       ],
       value: 2,
     }}
+    parameters={{
+      options: { showPanel: true}
+    }}
   >
-    {Template.bind({})}
+    {TabsTemplateState.bind({})}
   </Story>
 </Canvas>
 
@@ -164,6 +189,7 @@ export const Template = (args) => <Tabs {...args} />
         hideNoControlsWarning: true,
         exclude: ['onChange'],
       },
+      options: { showPanel: false}
     }}
   >
     <Disabled />
