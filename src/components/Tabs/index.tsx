@@ -70,7 +70,6 @@ function Tabs(props: Props) {
               id={id?.toString()}
               tabIndex={index}
               onClick={(event: FormEvent): void => {
-                console.log('Click')
                 handleChange(id, event)
               }}
             >
