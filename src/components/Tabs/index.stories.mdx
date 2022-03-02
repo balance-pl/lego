@@ -101,8 +101,10 @@ export const TabsTemplateState = (args) => {
     }
   }, [value])
   const handleChange = (id) => {
+    console.log('handleChange', { id })
     setCurrentValue(id)
   }
+  console.log('render', { currentValue })
   return <Tabs {...args} value={currentValue} onChange={handleChange} />
 }
 
@@ -114,18 +116,18 @@ export const TabsTemplateState = (args) => {
     args={{
       appearance: APPEARANCE.PRIMARY,
       options: [
-        { id: 1, name: 'Option 1' },
-        { id: 2, name: 'Option 2' },
-        { id: 3, name: 'Option 3' },
+        { id: '1', name: 'Option 1' },
+        { id: '2', name: 'Option 2' },
+        { id: '3', name: 'Option 3' },
       ],
-      value: 2,
+      value: '2',
     }}
     parameters={{
       viewMode: 'docs',
       previewTabs: {
         canvas: { hidden: false, title: false },
       },
-      options: { showPanel: true}
+      options: { showPanel: true },
     }}
   >
     {TabsTemplateState.bind({})}
@@ -140,14 +142,14 @@ export const TabsTemplateState = (args) => {
     args={{
       appearance: APPEARANCE.SECONDARY,
       options: [
-        { id: 1, name: 'Option 1' },
-        { id: 2, name: 'Option 2' },
-        { id: 3, name: 'Option 3' },
+        { id: '1', name: 'Option 1' },
+        { id: '2', name: 'Option 2' },
+        { id: '3', name: 'Option 3' },
       ],
-      value: 2,
+      value: '2',
     }}
     parameters={{
-      options: { showPanel: true}
+      options: { showPanel: true },
     }}
   >
     {TabsTemplateState.bind({})}
@@ -163,21 +165,21 @@ export const TabsTemplateState = (args) => {
       appearance={APPEARANCE.PRIMARY}
       disabled={true}
       options={[
-        { id: 1, name: 'Option 1' },
-        { id: 2, name: 'Option 2' },
-        { id: 3, name: 'Option 3' }
+        { id: "1", name: 'Option 1' },
+        { id: "2", name: 'Option 2' },
+        { id: "3", name: 'Option 3' }
       ]}
-      value={2}
+      value="2"
     />
     <Tabs
       appearance={APPEARANCE.SECONDARY}
       disabled={true}
       options={[
-        { id: 1, name: 'Option 1' },
-        { id: 2, name: 'Option 2' },
-        { id: 3, name: 'Option 3' }
+        { id: "1", name: 'Option 1' },
+        { id: "2", name: 'Option 2' },
+        { id: "3", name: 'Option 3' }
       ]}
-      value={2}
+      value="2"
     />
   </div>
 `}
@@ -189,7 +191,7 @@ export const TabsTemplateState = (args) => {
         hideNoControlsWarning: true,
         exclude: ['onChange'],
       },
-      options: { showPanel: false}
+      options: { showPanel: false },
     }}
   >
     <Disabled />
@@ -203,9 +205,17 @@ export const TabsTemplateState = (args) => {
 ```scss
 .Tab {
 }
-.Tab__radio {
-}
 .Tab_active {
+}
+.Tab_appearance_primary {
+}
+.Tab_appearance_secondary {
+}
+.Tab_checked {
+}
+.Tab_disabled {
+}
+.Tab__Radio {
 }
 .Tabs {
 }

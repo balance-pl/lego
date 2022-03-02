@@ -1,7 +1,10 @@
-import React, { FormEvent, useEffect, useState } from 'react'
+import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 
 import cn from 'classnames'
 import PropTypes, { InferProps } from 'prop-types'
+
+// Components
+import { Tab } from './Tab'
 
 // Constants
 import { APPEARANCE, SIZE } from './constants'
@@ -14,12 +17,15 @@ function Tabs(props: Props) {
     appearance,
     className: cls,
     disabled,
+    name,
     size,
-    options,
+    options = [],
     value,
     onChange,
     ...otherProps
   } = props
+
+  console.log('render Tabs', value, { options })
 
   const [currentOption, setCurrentOption] = useState(value)
   const theme = useTheme()
@@ -41,41 +47,33 @@ function Tabs(props: Props) {
     }
   }, [currentOption, options])
 
-  const handleChange = (id: string | number | null, event: FormEvent): void => {
-    event.preventDefault()
+  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     if (disabled) {
       return
     }
     if (typeof onChange === 'function') {
-      onChange(id, event)
+      onChange(event.target?.value, event)
     }
   }
 
   return (
     <div {...otherProps} role="tablist" className={className}>
-      {options?.length !== 0 &&
-        options?.map((elem, index) => {
-          if (!elem) {
-            return null
-          }
-          const { id = '', name = '' } = elem
-          const isActive = id?.toString() === value?.toString()
+      {options.length !== 0 &&
+        options.map((option: Option) => {
+          const { id, name: optionName } = option
+          const isActive = id === value
           return (
-            <label
-              className={cn(theme.Tab, {
-                [theme.Tab_active]: isActive,
-              })}
+            <Tab
+              appearance={appearance}
+              checked={isActive}
+              disabled={disabled ?? false}
               key={id}
-              role="tab"
-              id={id?.toString()}
-              tabIndex={index}
-              onClick={(event: FormEvent): void => {
-                handleChange(id, event)
-              }}
+              name={name}
+              value={id}
+              onChange={handleChange}
             >
-              <input className={theme.Tab__radio} type="radio" />
-              {name}
-            </label>
+              {optionName}
+            </Tab>
           )
         })}
     </div>
@@ -85,18 +83,15 @@ function Tabs(props: Props) {
 Tabs.propTypes = {
   appearance: PropTypes.oneOf(Object.values(APPEARANCE)),
   disabled: PropTypes.bool,
+  name: PropTypes.string.isRequired,
   size: PropTypes.oneOf(Object.values(SIZE)),
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      id: PropTypes.string,
       name: PropTypes.node,
     })
   ),
-  value: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-    PropTypes.oneOf([null]),
-  ]),
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   onChange: PropTypes.func,
 }
 
@@ -109,7 +104,13 @@ Tabs.defaultProps = {
   onChange: () => {},
 }
 
+type Option = {
+  id: string
+  name: string
+}
+
 export type Props = InferProps<typeof Tabs.propTypes> & {
+  options?: Option[]
   onChange?: (id: string | number | null, event: FormEvent) => void
 } & {
   [key: string]: any

@@ -1,0 +1,116 @@
+@use "sass:color";
+
+$primary-bg-color: $color-white;
+$primary-b-color: #e6e6e6;
+
+$secondary-bg-color: #e5e5e5;
+$secondary-b-color: #cdcdcd;
+$secondary-active-bg-color: #d5d5d5;
+
+.Tab {
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 19px;
+  margin-left: -1px;
+  padding: 10px 15px;
+  transition:
+    border-color 0.2s ease-in-out,
+    background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
+
+  &_appearance_primary {
+    background-color: $color-white;
+    border: 1px solid $primary-b-color;
+  }
+
+  &_appearance_primary.Tab_disabled:hover {
+    background-color: $color-white;
+    border-color: $primary-b-color;
+    color: initial;
+  }
+
+  &_appearance_primary.Tab_disabled.Tab_checked:hover {
+    background-color: $color-red;
+    border-color: $color-red;
+    color: $color-white;
+  }
+
+  &_appearance_secondary {
+    background-color: $secondary-bg-color;
+    border: 1px solid $primary-b-color;
+  }
+
+  &_appearance_secondary.Tab_checked {
+    background-color: $color-red;
+    border-color: $color-red;
+    color: $color-white;
+  }
+
+  &_appearance_secondary.Tab_disabled:hover {
+    background-color: $secondary-bg-color;
+    border-color: $primary-b-color;
+    color: initial;
+  }
+
+  &_appearance_secondary.Tab_disabled.Tab_checked:hover {
+    background-color: $color-red;
+    border-color: $color-red;
+    color: $color-white;
+  }
+
+  &_disabled {
+    cursor: initial;
+    opacity: 0.3;
+  }
+
+  &_disabled:hover {
+    background-color: $color-white;
+    border: 1px solid $primary-b-color;
+    color: initial;
+    cursor: initial;
+  }
+
+  &__Radio {
+    display: none;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:first-child {
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+    margin-left: 0;
+  }
+
+  &:last-child {
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+
+  &:hover {
+    border: 1px solid $color-red;
+    z-index: 1;
+  }
+
+  &_checked {
+    background-color: $color-red;
+    border: 1px solid $color-red;
+    color: $color-white;
+    z-index: 2;
+  }
+
+  &_checked:hover {
+    background-color: $color-red;
+    border: 1px solid $color-red;
+    color: $color-white;
+    cursor: initial;
+  }
+}

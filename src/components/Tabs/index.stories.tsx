@@ -38,9 +38,9 @@ tabs.parameters = {
 
 tabs.value = {
   options: [
-    { id: 1, name: 'Option 1' },
-    { id: 2, name: 'Option 2' },
-    { id: 3, name: 'Option 3' },
+    { id: '1', name: 'Option 1' },
+    { id: '2', name: 'Option 2' },
+    { id: '3', name: 'Option 3' },
   ],
 }
 
@@ -55,10 +55,12 @@ export const Disabled: ComponentStory<typeof Tabs> = () => {
       <Tabs
         appearance={APPEARANCE.PRIMARY}
         disabled={true}
+        name="primary"
         options={[
-          { id: 1, name: 'Option 1' },
-          { id: 2, name: 'Option 2' },
-          { id: 3, name: 'Option 3' },
+          { id: '1', name: 'Option 1' },
+          { id: '2', name: 'Option 2' },
+          { id: '3', name: 'Option 3' },
+          { id: '4', name: 'Option 4' },
         ]}
         value={currentOption}
         onChange={handleChange}
@@ -68,10 +70,11 @@ export const Disabled: ComponentStory<typeof Tabs> = () => {
       <Tabs
         appearance={APPEARANCE.SECONDARY}
         disabled={true}
+        name="secondary"
         options={[
-          { id: 1, name: 'Option 1' },
-          { id: 2, name: 'Option 2' },
-          { id: 3, name: 'Option 3' },
+          { id: '1', name: 'Option 1' },
+          { id: '2', name: 'Option 2' },
+          { id: '3', name: 'Option 3' },
         ]}
         value={currentOption}
         onChange={handleChange}
