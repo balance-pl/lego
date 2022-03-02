@@ -4,7 +4,7 @@ import cn from 'classnames'
 import PropTypes, { InferProps } from 'prop-types'
 
 // Components
-import { Tab } from './Tab'
+import { Tab } from './tab'
 
 // Constants
 import { APPEARANCE, SIZE } from './constants'
@@ -25,16 +25,14 @@ function Tabs(props: Props) {
     ...otherProps
   } = props
 
-  console.log('render Tabs', value, { options })
-
   const [currentOption, setCurrentOption] = useState(value)
   const theme = useTheme()
 
   const className = cn(
     theme.Tabs,
     theme[`Tabs_appearance_${appearance}`],
-    { [theme.Tabs_disabled]: disabled },
     theme[`Tabs_size_${size}`],
+    { [theme.Tabs_disabled]: disabled },
     cls
   )
 

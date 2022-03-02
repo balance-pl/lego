@@ -44,6 +44,15 @@ import Tabs from './index'
       },
       options: ['s', 'm', 'l'],
     },
+    name: {
+      control: 'text',
+      description: 'Название группы табов',
+      table: {
+        type: {
+          summary: 'string',
+        },
+      },
+    },
     options: {
       control: 'object',
       description: 'список опций (табов)',
@@ -61,7 +70,7 @@ import Tabs from './index'
         type: {
           summary: 'number, string, null',
         },
-        defaultValue: 'null',
+        defaultValue: null,
       },
     },
     onChange: {
@@ -101,10 +110,8 @@ export const TabsTemplateState = (args) => {
     }
   }, [value])
   const handleChange = (id) => {
-    console.log('handleChange', { id })
     setCurrentValue(id)
   }
-  console.log('render', { currentValue })
   return <Tabs {...args} value={currentValue} onChange={handleChange} />
 }
 
@@ -115,6 +122,7 @@ export const TabsTemplateState = (args) => {
     name="Primary"
     args={{
       appearance: APPEARANCE.PRIMARY,
+      name: 'primary',
       options: [
         { id: '1', name: 'Option 1' },
         { id: '2', name: 'Option 2' },
@@ -123,10 +131,6 @@ export const TabsTemplateState = (args) => {
       value: '2',
     }}
     parameters={{
-      viewMode: 'docs',
-      previewTabs: {
-        canvas: { hidden: false, title: false },
-      },
       options: { showPanel: true },
     }}
   >
@@ -141,6 +145,7 @@ export const TabsTemplateState = (args) => {
     name="Secondary"
     args={{
       appearance: APPEARANCE.SECONDARY,
+      name: 'secondary',
       options: [
         { id: '1', name: 'Option 1' },
         { id: '2', name: 'Option 2' },
@@ -164,6 +169,7 @@ export const TabsTemplateState = (args) => {
     <Tabs
       appearance={APPEARANCE.PRIMARY}
       disabled={true}
+      name: 'disabledPrimary',
       options={[
         { id: "1", name: 'Option 1' },
         { id: "2", name: 'Option 2' },
@@ -174,6 +180,7 @@ export const TabsTemplateState = (args) => {
     <Tabs
       appearance={APPEARANCE.SECONDARY}
       disabled={true}
+      name: 'disabledSecondary',
       options={[
         { id: "1", name: 'Option 1' },
         { id: "2", name: 'Option 2' },
@@ -191,6 +198,7 @@ export const TabsTemplateState = (args) => {
         hideNoControlsWarning: true,
         exclude: ['onChange'],
       },
+      name: 'disabled',
       options: { showPanel: false },
     }}
   >
@@ -198,37 +206,18 @@ export const TabsTemplateState = (args) => {
   </Story>
 </Canvas>
 
-<ArgsTable story={'Primary'} />
+<ArgsTable story="Primary" />
 
 ### CSS-классы
 
 ```scss
-.Tab {
-}
-.Tab_active {
-}
-.Tab_appearance_primary {
-}
-.Tab_appearance_secondary {
-}
-.Tab_checked {
-}
-.Tab_disabled {
-}
-.Tab__Radio {
-}
-.Tabs {
-}
-.Tabs_appearance_primary {
-}
-.Tabs_appearance_secondary {
-}
-.Tabs_disabled {
-}
-.Tabs_size_s {
-}
-.Tabs_size_m {
-}
-.Tabs_size_l {
-}
+.Tab {}
+.Tab_appearance_primary {}
+.Tab_appearance_secondary {}
+.Tab_checked {}
+.Tab_disabled {}
+.Tab_size_s {}
+.Tab_size_m {}
+.Tab_size_l {}
+.Tabs {}
 ```

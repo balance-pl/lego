@@ -45,7 +45,7 @@ tabs.value = {
 }
 
 export const Disabled: ComponentStory<typeof Tabs> = () => {
-  const [currentOption, setCurrentOption] = useState(2)
+  const [currentOption, setCurrentOption] = useState('2')
   const handleChange = (e: any) => {
     setCurrentOption(e?.target?.value)
   }

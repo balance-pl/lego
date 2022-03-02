@@ -38,7 +38,7 @@ export function Tab(props: Props) {
     >
       <input
         {...otherProps}
-        className={theme.Tab__Radio}
+        checked={checked}
         name={name}
         value={value}
         type="radio"
