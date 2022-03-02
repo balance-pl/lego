@@ -18,6 +18,7 @@ function Tabs(props: Props) {
     options,
     value,
     onChange,
+    ...otherProps
   } = props
 
   const [currentOption, setCurrentOption] = useState(value)
@@ -51,7 +52,7 @@ function Tabs(props: Props) {
   }
 
   return (
-    <div role="tablist" className={className}>
+    <div {...otherProps} role="tablist" className={className}>
       {options?.length !== 0 &&
         options?.map((elem, index) => {
           if (!elem) {
