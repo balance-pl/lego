@@ -45,8 +45,9 @@ $secondary-active-bg-color: #d5d5d5;
     }
 
     .Tab_active:hover {
-      background-color: $secondary-active-bg-color;
-      border-color: $secondary-active-bg-color;
+      background-color: $color-red;
+      border-color: $color-red;
+      color: $color-white;
     }
   }
 
@@ -104,9 +105,7 @@ $secondary-active-bg-color: #d5d5d5;
   }
 
   &_active:hover {
-    background-color: color.adjust($color-red, $green: -29);
-    border: 1px solid color.adjust($color-red, $green: -29);
-    color: $color-white;
+    cursor: initial;
   }
 }
 

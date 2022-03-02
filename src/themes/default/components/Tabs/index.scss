@@ -34,19 +34,21 @@ $secondary-active-bg-color: #d5d5d5;
       border-color: $primary-b-color;
     }
 
-    .Tab_active {
-      background-color: $color-blue;
-      border-color: $color-blue;
-    }
-
     .Tab:hover {
       border-color: $secondary-active-bg-color;
       color: initial;
     }
 
+    .Tab_active {
+      background-color: $color-blue;
+      border-color: $color-blue;
+    }
+
     .Tab_active:hover {
-      background-color: $secondary-active-bg-color;
-      border-color: $secondary-active-bg-color;
+      background-color: $color-blue;
+      border-color: $color-blue;
+      color: $color-white;
+      cursor: initial;
     }
   }
 
@@ -80,6 +82,14 @@ $secondary-active-bg-color: #d5d5d5;
     background-color 0.2s ease-in-out,
     color 0.2s ease-in-out;
 
+  &:focus-visible {
+    outline: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
   &:first-child {
     border-bottom-left-radius: 4px;
     border-top-left-radius: 4px;
@@ -104,9 +114,7 @@ $secondary-active-bg-color: #d5d5d5;
   }
 
   &_active:hover {
-    background-color: color.adjust($color-blue, $green: -29);
-    border: 1px solid color.adjust($color-blue, $green: -29);
-    color: $color-white;
+    cursor: initial;
   }
 }
 
