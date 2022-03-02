@@ -6,9 +6,10 @@ export type Theme = {
   TestButton_appearance_primary: string
   Radio: string
   Radio__Label: string
-  Radio_disabled: string
-  Radio_checked: string
+  Radio__Label_checked: string
+  Radio__Label_disabled: string
   Tab: string
+  Tab__radio: string
   Tab_active: string
   Tabs: string
   Tabs_appearance_primary: string
@@ -17,7 +18,6 @@ export type Theme = {
   Tabs_size_s: string
   Tabs_size_m: string
   Tabs_size_l: string
-  Tab__radio: string
 } & {
   [key: string]: string
 }
