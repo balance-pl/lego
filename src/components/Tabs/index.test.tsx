@@ -46,7 +46,7 @@ describe('Tabs', () => {
     const tabs = screen.getByRole('tablist')
     expect(tabs).toHaveClass('Tabs_appearance_secondary')
   })
-  it('передали options, value -> есть класс Tab_active у выбранного элемента', () => {
+  it('передали options, value -> есть класс Tab_checked у выбранного элемента', () => {
     const OPTIONS_TEXT = 'Options 1'
     render(
       <Tabs
@@ -56,7 +56,7 @@ describe('Tabs', () => {
       />
     )
     const option = screen.getByRole('tab')
-    expect(option).toHaveClass('Tab_active')
+    expect(option).toHaveClass('Tab_checked')
   })
   it('передали options, onChange, клик по элементу -> вызыван onChange с параметрами', () => {
     const OPTIONS_TEXT = 'Options 1'
