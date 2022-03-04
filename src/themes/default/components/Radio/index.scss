@@ -21,6 +21,7 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
     width: 16px;
   }
 
@@ -43,11 +44,16 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
+      transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
       width: 8px;
     }
   }
 
   &_checked:hover {
+    &::before {
+      border-color: color.adjust($color-blue, $green: -29);
+    }
+
     &::after {
       background-color: color.adjust($color-blue, $green: -29);
       border-radius: 50%;
@@ -69,6 +75,10 @@
   &_disabled:hover {
     &::before {
       border: 1px solid $color-grey;
+    }
+
+    &::after {
+      background-color: $color-blue;
     }
   }
 }

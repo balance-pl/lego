@@ -1,4 +1,4 @@
-import { ArgsTable, Meta, Story } from '@storybook/addon-docs'
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'
 import Radio from './index'
 import { Default, Disabled } from './index.stories'
 
@@ -9,12 +9,16 @@ import { Default, Disabled } from './index.stories'
     disabled: {
       control: false,
       description: '"disabled" состояние',
-      defaultValue: false,
+      table: {
+        defaultValue: false,
+      },
     },
     checked: {
       control: false,
       description: '"checked" состояние',
-      defaultValue: false,
+      table: {
+        defaultValue: false,
+      },
     },
     children: {
       control: { type: 'text' },
@@ -33,18 +37,17 @@ import { Default, Disabled } from './index.stories'
     name: {
       control: false,
       description: 'Название группы радиобаттонов',
-      defaultValue: '',
       type: { required: true },
     },
     value: {
       control: false,
       description: 'Значение',
       table: {
+        defaultValue: '',
         type: {
           summary: 'string, number, null',
         },
       },
-      defaultValue: '',
     },
     onChange: {
       action: 'changed',
@@ -72,26 +75,88 @@ export const Template = (args) => <Radio {...args} />
 
 Обычные радиобаттоны:
 
-<Story
-  name="Default"
-  parameters={{
-    controls: { hideNoControlsWarning: true, exclude: ['checked', 'boolean'] },
-  }}
+<Canvas
+  mdxSource={`
+  <Radio
+    name="banks"
+    checked={currentValue === BANKS.ALFA}
+    value={BANKS.ALFA}
+    onChange={handleChange}
+  >
+    {BANKS.ALFA}
+  </Radio>
+  <Radio
+    name="banks"
+    checked={currentValue === BANKS.ALFA}
+    value={BANKS.ALFA}
+    onChange={handleChange}
+  >
+    {BANKS.ALFA}
+  </Radio>
+`}
 >
-  <Default />
-</Story>
+  <Story
+    name="Default"
+    parameters={{
+      controls: {
+        hideNoControlsWarning: true,
+        exclude: ['checked', 'boolean'],
+      },
+    }}
+  >
+    <Default />
+  </Story>
+</Canvas>
 
 "disabled" радиобаттоны:
 
-<Story
-  name="Disabled"
-  parameters={{
-    controls: false,
-    include: ['onChange'],
-    exclude: ['checked'],
-  }}
+<Canvas
+  mdxSource={`
+  <Radio
+    name="banks"
+    checked={currentValue === BANKS.ALFA}
+    disabled
+    value={BANKS.ALFA}
+    onChange={handleChange}
+  >
+    {BANKS.ALFA}
+  </Radio>
+  <Radio
+    name="banks"
+    checked={currentValue === BANKS.ALFA}
+    disabled
+    value={BANKS.ALFA}
+    onChange={handleChange}
+  >
+    {BANKS.ALFA}
+  </Radio>
+`}
 >
-  <Disabled />
-</Story>
+  <Story
+    name="Disabled"
+    parameters={{
+      controls: false,
+      include: ['onChange'],
+      exclude: ['checked'],
+    }}
+  >
+    <Disabled />
+  </Story>
+</Canvas>
+
+### Cвойства
 
 <ArgsTable story={'Default'} />
+
+### CSS-классы
+
+```scss
+.Radio {
+}
+.Radio__Label{
+}
+.Radio__Label_checked {
+}
+.Radio__Label_disabled {
+}
+```

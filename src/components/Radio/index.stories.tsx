@@ -14,7 +14,9 @@ basic.argTypes = {
   checked: {
     control: 'boolean',
     description: '"checked" состояние',
-    defaultValue: false,
+    table: {
+      defaultValue: false,
+    },
   },
   children: {
     control: { type: 'text' },
@@ -32,7 +34,9 @@ basic.argTypes = {
   value: {
     control: 'text',
     description: 'Значение',
-    defaultValue: '',
+    table: {
+      defaultValue: '',
+    },
   },
   onChange: { action: 'changed' },
 }
