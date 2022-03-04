@@ -11,7 +11,7 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 18px;
-  padding: 10px 15px;
+  padding: 9px 15px;
   position: relative;
   transition:
     border-color 0.2s ease-in-out,
@@ -75,8 +75,10 @@
     border-bottom-color: color.scale($color-grey, $lightness: 30%);
     border-top-color: color.scale($color-grey, $lightness: 30%);
 
-    &:hover:not(.Tab_disabled) {
-      border-color: $color-primary;
+    &:hover:not(.Tab_disabled):not(.Tab_checked) {
+      background-color: color.scale($color-grey, $blackness: 10%);
+      border-color: color.scale($color-grey, $blackness: 10%);
+      color: $color-white;
     }
 
     &:first-child {
